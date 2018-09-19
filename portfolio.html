@@ -1,0 +1,280 @@
+<html> 
+    <head> 
+        <title> Chroma: Portfolio</title>
+        <!--JQuery-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <!--MomentJs-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment-with-locales.js"></script>
+        <!--Bootstrap-Datepicker-->
+        <script src="bsdp/js/bsdp.js"></script>
+        <!--JQuery-SwitchButton-->
+        <!--script src="jQuery-switchButton.js"></script-->
+        <!--Firebase Data Management -->
+        <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+        <script src="chroma-db-connection.js"></script>         
+        <link rel="stylesheet" type="text/css" href="bs/css/bs.css">
+        <link rel="stylesheet" type="text/css" href="chroma-master.css?vb12" />
+        <link rel="stylesheet" type="text/css" href="bsdp/css/bsdp.css" />
+        <!--link rel="stylesheet" type="text/css" href="jQuery-switchButton.css"/-->
+        <!--script src="https://code.highcharts.com/stock/highstock.js"></script-->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <!--script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.js"></script-->         
+        <!--script src="https://www.gstatic.com/charts/loader.js"></script-->
+        <!--script src="chart-data.js"></script-->
+        <script src="chroma-data-conservative.js?vb12"></script>
+        <script src="chroma-data-moderate.js?vb12"></script>
+        <script src="chroma-data-aggressive.js?vb12"></script>             
+        <script src="performance-service.js?vb12"></script>         
+    </head>     
+    <body> 
+        <nav class="navbar navbar-fixed-top navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Chroma Investments ALPHA</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.nav-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>         
+        <div class="jumbotron text-center">
+            <div id="ctnr-date-controls">
+                <div class="panel">
+                    <div class="panel-body">
+                        <h5 id="label-datepicker" class="col-xm-12 col-lg-12">Investment Time Window</h5>
+                        <div class="col-xm-12 col-lg-12">
+                            <div class="input-daterange input-group" id="datepicker">
+                                <input id="startDate" type="text" class="form-control" name="start" value="05/05/2003" />
+                                <span class="input-group-addon">to</span>
+                                <input id="endDate" type="text" class="form-control" name="end" value="05/30/2016"/>
+                                <span class="input-group-addon">&nbsp;&nbsp;</span>
+                                <div id="btn-grp-year" class="btn-group">
+                                    <button id="btn-pick-year" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        Select a Year<span class="caret"></span>
+                                    </button>                                             
+                                    <ul class="dropdown-menu" role="menu"> 
+                                        <li data="all-years">
+                                            <a href="#">2003-2015</a>
+                                        </li>
+                                        <li data="year-2003">
+                                            <a href="#">2003</a>
+                                        </li>                                                 
+                                        <li data="year-2004">
+                                            <a href="#">2004</a>
+                                        </li>                                                 
+                                        <li data="year-2005">
+                                            <a href="#">2005</a>
+                                        </li>                                                 
+                                        <li data="year-2006">
+                                            <a href="#">2006</a>
+                                        </li>                                                 
+                                        <li data="year-2007">
+                                            <a href="#">2007</a>
+                                        </li>                                                 
+                                        <li data="year-2008">
+                                            <a href="#">2008</a>
+                                        </li>                                                 
+                                        <li data="year-2009">
+                                            <a href="#">2009</a>
+                                        </li>                                                 
+                                        <li data="year-2010">
+                                            <a href="#">2010</a>
+                                        </li>                                                 
+                                        <li data="year-2011">
+                                            <a href="#">2011</a>
+                                        </li>                                                 
+                                        <li data="year-2012">
+                                            <a href="#">2012</a>
+                                        </li>                                                 
+                                        <li data="year-2013">
+                                            <a href="#">2013</a>
+                                        </li>                                                 
+                                        <li data="year-2014">
+                                            <a href="#">2014</a>
+                                        </li>                                                 
+                                        <li data="year-2015">
+                                            <a href="#">2015</a>
+                                        </li>                                                 
+                                    </ul>                                             
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul id='tabs-chart-metrics' class="nav nav-tabs"> 
+                <li id='tab-Performance' class="active">
+                    <a href="#">Performance</a>
+                </li>                 
+                <li id='tab-Allocation'>
+                    <a href="#">Allocation</a>
+                </li>
+                <li id='tab-Portfolio'>
+                    <a href="#">My Portfolio</a>
+                </li>
+                <li id='tab-Investments'>
+                    <a href="#">Competing Investments</a>
+                </li>                    
+            </ul>             
+            <div id="ctnr-charts"> 
+                <div id='ctnr-chart-portfolio' class="row hidden">
+                    <div class="col-md-9">
+                        <div id="chart-portfolio">
+                            <img src='myportfolio.png' width='80%' height='80%' />
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                <div id='ctnr-chart-allocation' class="row">
+                    <div class="col-md-9">
+                        <div id="chart-allocation"></div>
+                        <br />
+                    </div>
+                </div>
+                <div id='ctnr-chart-performance' class="row"> 
+                    <div id="chart" class="col-md-9"> 
+                        <div id="high-charts-ctnr" style="min-width: 640px; height: 480px; margin: 0 auto"></div>                         
+                        <!--div id="chart_div" width="100%"></div>
+                        <canvas id="myChart" width="640" height="480"></canvas-->   
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class='container'>
+                                    The equity exposure on the benchmark portfolio at the beginning of the drawdown period was 
+                                    <span id='mdd-bench-start-exposure'>X%</span>
+                                    , resulting in lossess of <span id='mdd-bench-loss'>XX%</span>.  
+                                    Chroma reduced equity exposure by <span id='chroma-exposure-reduction'>Y%</span>
+                                    , that contributed to <span id="chroma-losses">X%</span> losses comparatively.
+                                </div>
+                            </div>
+                        </div>                      
+                    </div>
+                    <div id="kpi-section" class="col-md-3">
+                        <div class="container">
+                            <div class="row">
+                                <div class="panel"> 
+                                    <div class="panel-body">
+                                        <div class="container">
+                                            <h5>Annual Compound Rate of Return</h5>
+                                            <div class="row">
+                                                <span class="label label-default">Benchmark</span>
+                                                <span id="kpi-ror-bench" class="kpi-val">Secondary text</span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="label label-default">Chroma</span>
+                                                <span id="kpi-ror-chroma" class="kpi-val">Secondary text</span>
+                                            </div>
+                                        </div>
+                                    </div>                                     
+                                </div>
+                                <div class="panel"> 
+                                    <div id='mdd-panel-body' class="panel-body">
+                                        <div class="switch-wrapper">
+                                            <input id="chbx-show-mdd" type="checkbox">
+                                        </div>
+                                        <br />
+                                        <div class="container">
+                                            <h5>Maximum Draw Down</h5>
+                                            <div class="row">
+                                                <span id="btn-mdd-bench" data-checked='false' class="label label-default">Benchmark</span>
+                                                <span id="kpi-mdd-bench" class="kpi-val">Secondary text</span>
+                                            </div>
+                                            <div class="row">
+                                                <span id="btn-mdd-chroma" data-checked='false' class="label label-default">Chroma</span>
+                                                <span id="kpi-mdd-chroma" class="kpi-val">Secondary text</span>
+                                            </div>
+                                        </div>
+                                    </div>                                     
+                                </div>
+                                <div class="panel"> 
+                                    <div class="panel-body">
+                                        <div class="container">
+                                            <h5>Number of Days to Recover from Maximum Draw Down</h5>
+                                            <div class="row">
+                                                <span class="label label-default">Benchmark</span>
+                                                <span id="kpi-recover-bench" class="kpi-val">Secondary text</span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="label label-default">Chroma</span>
+                                                <span id="kpi-recover-chroma" class="kpi-val">Secondary text</span>
+                                            </div>
+                                        </div>
+                                    </div>                                     
+                                </div>                                
+                                <div class="panel hidden"> 
+                                    <div class="panel-body">
+                                        <div class="container">
+                                            <h5>Maximum Run Up: Number of Days to Recover from Maximum Draw Down</h5>
+                                            <div class="row">
+                                                <span class="label label-default">Benchmark</span>
+                                                <span id="kpi-mru-bench" class="kpi-val">Secondary text</span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="label label-default">Chroma</span>
+                                                <span id="kpi-mru-chroma" class="kpi-val">Secondary text</span>
+                                            </div>
+                                        </div>
+                                    </div>                                     
+                                </div>
+                            </div>
+                        </div>                         
+                    </div>                     
+                </div>
+                 <div id='ctnr-investments' class="row">   
+                     <div class="col-md-9">
+                         <div id="compare-investments">
+                             The current allocation of your Schwabb account is <b>60% equities</b> and <b>40% bonds</b>, which translates to a <b>moderate risk allocation</b>. 
+                             <br>
+                             Your moderate risk Chroma's investment strategy currently  holds <b>70% equities</b> and <b>30% bonds</b> as Chroma sees equities offering a better risk return than bonds. 
+                             <br>
+                             Since inception of your Chroma account, your Chroma moderate strategy has outperformed/underperformed your Schwabb portfolio by X%. "
+                         </div>
+                     <div>
+                </div>               
+            </div>             
+        </div>         
+    </div>     
+</div> 
+        <!--/row-->
+        <hr>
+        <footer>
+            <p>&copy; Chroma 2017</p>
+        </footer>
+    </div>
+    <!--/.container-->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--script src="assets/js/jquery.min.js"></script-->
+    <script src="bs/js/bs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug>
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script-->
+    <script>
+            $(document).ready(function () {
+                $('[data-toggle="offcanvas"]').click(function () {
+                    $('.row-offcanvas').toggleClass('active')
+                });
+            });
+        </script>
+<script src='portfolio.js?vb12'></script>
+</body>

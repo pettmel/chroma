@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Chroma: ROI Probability</title>
+    <!--JQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>       
+    <!--Firebase Data Management -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+    <script src="chroma-db-connection.js?vb12"></script>    
+    <!-- Bootstrap core CSS -->
+    <link href="bs/css/bs.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="chroma-master.css?vb12">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                <a class="navbar-brand" href="#">Chroma Investments ALPHA</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.nav-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- /.navbar -->
+    <div class="container">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-xs-12 col-sm-12">
+                <p class="pull-right visible-xs"><button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button></p>
+                <div class="jumbotron">
+                    <h2>Setting Up Your Investment Plan: Risk vs Reward</h2>
+                    <p>Chroma provides selective investment strategies based on your risk tolerance<br />
+                    Remember that you have the ability to adjust your strategy at any time. <br /></p>
+                </div>
+                <div class="row reg-forms">
+                    <div class="col-xs-12 col-lg-12">
+                        <h3>
+                            Your questionaire answers indicate a risk tolerance that aligns with a <b id='q-risk-portfolio'>MODERATE</b> investment strategy expected to deliver a
+                            yearly return of <b id='q-risk-portfolio-return' class='positiveVal'>X%</b> and limit your maximum annual loss in the worst
+                            case scenario to no more than <b id='q-risk-portfolio-loss' class='negativeVal'>Y%</b>.
+                        </h3>
+                        <h4>The characteristics for Chroma's <span id='contrast-placeholder'>Moderate investment strategy is</span> also summarized below.  Feel free to change
+                             your investment strategy depending on the level of risk appropriate for you.</h4>
+                        <div id='calculated-selection'>
+                        </div>
+                        <div id='conservative-selection' class='row row-selection'>
+                            <div class='col-md-6 col-xs-12'>
+                                <h5>
+                                    <input disabled="disabled" class="sel-strategy" type="checkbox">
+                                    Choose the <b>CONSERVATIVE</b> Strategy</h5>
+                                <img src="conservative-probability.png" class='illustration' /></div>
+                            <div class='col-md-6 col-xs-12'>
+                                <h5 class='seleted-badge'>Selected Strategy<h5>
+                                <table class="tbl-illustration"><tbody>
+                                    <tr><th class='col-summary-labels'></th><th>Expectation</th><th>Probability</th></tr>
+                                    <tr class='positive-row'>
+                                        <td>Gain</td><td>6%</td><td>90%</td></tr>
+                                    <tr class='negative-row'>
+                                        <td>Loss</td><td>-1%</td><td>10%</td></tr>
+                                        <tr class='row-spacer'><td colspan="3"></td></tr>
+                                    <tr class='positive-row bold'>
+                                        <td>Extreme Gain</td><td>11%</td><td>5%</td></tr>
+                                    <tr class='negative-row bold'>
+                                        <td>Extreme Loss</td><td>-2%</td><td>5%</td></tr>
+                                        <tr class='row-spacer'><td colspan="3"></td></tr>
+                                    <tr class='row-summary'>
+                                        <td>Avg Gain to $100 Invested</td><td colspan="2" class='summary-val'>$5</td></tr>
+                                    <tr class='row-summary'>
+                                        <td>12-Month Loss Limit</td><td colspan="2" class='summary-val'>10%</td></tr>
+                                    <tr class='row-summary'>
+                                        <td>Typical Demographics</td><td colspan="2" class='summary-val'>Age > 60 years, retired</td></tr>                                                                                                                                                                                                          
+                                </tbody></table>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div id='moderate-selection' class='row row-selection'>
+                            <div class='col-md-6 col-xs-12'>
+                                <h5>
+                                    <input disabled="disabled" class="sel-strategy" type="checkbox">
+                                    Choose the <b>MODERATE</b> Strategy</h5>
+                                <img src="moderate-probability.png" class='illustration' /></div>
+                            <div class='col-md-6 col-xs-12'>
+                                <h5 class='seleted-badge'>Selected Strategy<h5>
+                                <table class="tbl-illustration"><tbody>
+                                    <tr><th class='col-summary-labels'></th><th>Expectation</th><th>Probability</th></tr>
+                                    <tr class='positive-row'>
+                                        <td>Gain</td><td>10%</td><td>83%</td></tr>
+                                    <tr class='negative-row'>
+                                        <td>Loss</td><td>-5%</td><td>17%</td></tr>
+                                        <tr class='row-spacer'><td colspan="3"></td></tr>
+                                    <tr class='positive-row bold'>
+                                        <td>Extreme Gain</td><td>18%</td><td>5%</td></tr>
+                                    <tr class='negative-row bold'>
+                                        <td>Extreme Loss</td><td>-10%</td><td>5%</td></tr>
+                                        <tr class='row-spacer'><td colspan="3"></td></tr>
+                                    <tr class='row-summary'>
+                                        <td>Avg Gain to $100 Invested</td><td colspan="2" class='summary-val'>$7</td></tr>                                                                                                                                                                
+                                    <tr class='row-summary'>
+                                        <td>12-Month Loss Limit</td><td colspan="2" class='summary-val'>20%</td></tr> 
+                                    <tr class='row-summary'>
+                                        <td>Typical Demographics</td><td colspan="2" class='summary-val'>Age > 40 year < 55 years, employed with family</td></tr>                                           
+                                </tbody></table>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div id='aggressive-selection' class='row row-selection'>
+                            <div class='col-md-6 col-xs-12'>
+                                <h5>
+                                    <input disabled="disabled" class="sel-strategy" type="checkbox">
+                                    Select the <b>AGGRESSIVE</b> Strategy</h5>
+                                <img src="agressive-probability.png" class='illustration' /></div>
+                            <div class='col-md-6 col-xs-12'>
+                                <h5 class='seleted-badge'>Selected Strategy<h5>
+                                <table class="tbl-illustration"><tbody>
+                                    <tr><th class='col-summary-labels'></th><th>Expectation</th><th>Probability</th></tr>
+                                    <tr class='positive-row'>
+                                        <td>Gain</td><td>13%</td><td>81%</td></tr>
+                                    <tr class='negative-row'>
+                                        <td>Loss</td><td>-7%</td><td>19%</td></tr>
+                                        <tr class='row-spacer'><td colspan="3"></td></tr>
+                                    <tr class='positive-row bold'>
+                                        <td>Extreme Gain</td><td>24%</td><td>5%</td></tr>
+                                    <tr class='negative-row bold'>
+                                        <td>Extreme Loss</td><td>-15%</td><td>5%</td></tr>
+                                        <tr class='row-spacer'><td colspan="3"></td></tr>
+                                    <tr class='row-summary'>
+                                        <td>Avg Gain to $100 Invested</td><td colspan="2" class='summary-val'>$9</td></tr>
+                                    <tr class='row-summary'>
+                                        <td>12-Month Loss Limit</td><td colspan="2" class='summary-val'>30%</td></tr>
+                                    <tr class='row-summary'>
+                                        <td>Typical Demographics</td><td colspan="2" class='summary-val'>Age < 30 years, employed and single</td></tr>                                            
+                                </tbody></table>                                
+                            </div>
+                        </div>
+                        <p><a id="btn-continue" class="btn btn-default" href="registration.html?vb12" role="button">Continue »</a></p>
+                    </div>
+                    <!--/.col-xs-6.col-lg-4-->
+                    <!--/.col-xs-6.col-lg-4-->
+                    <!--/.col-xs-6.col-lg-4-->
+                    <!--/.col-xs-6.col-lg-4-->
+                    <!--/.col-xs-6.col-lg-4-->
+                    <!--/.col-xs-6.col-lg-4-->
+                </div>
+                <!--/row-->
+            </div>
+            <!--/.col-xs-12.col-sm-9-->
+            <!--/.sidebar-offcanvas-->
+        </div>
+        <!--/row-->
+        <hr>
+        <footer>
+            <p>&copy; Chroma 2017</p>
+        </footer>
+    </div>
+    <!--/.container-->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--script src="assets/js/jquery.min.js"></script-->
+    <script src="bs/js/bs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug>
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script-->
+    <script>
+            $(document).ready(function () {
+                $('[data-toggle="offcanvas"]').click(function () {
+                    $('.row-offcanvas').toggleClass('active')
+                });
+            });
+        </script>
+<script src='return-probability.js?vb12'></script>
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+
+html,
+body
+{
+    overflow-x: hidden;
+}
+
+body
+{
+    padding-top: 70px;
+}
+
+footer
+{
+    padding: 30px 0;
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+
+@media screen and (max-width: 767px)
+{
+    .row-offcanvas
+    {
+        position: relative;
+        -webkit-transition: all .25s ease-out;
+        -o-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+    }
+    .row-offcanvas-right
+    {
+        right: 0;
+    }
+    .row-offcanvas-left
+    {
+        left: 0;
+    }
+    .row-offcanvas-right
+  .sidebar-offcanvas
+    {
+        right: -50%;
+    }
+    .row-offcanvas-left
+  .sidebar-offcanvas
+    {
+        left: -50%;
+    }
+    .row-offcanvas-right.active
+    {
+        right: 50%;
+    }
+    .row-offcanvas-left.active
+    {
+        left: 50%;
+    }
+    .sidebar-offcanvas
+    {
+        position: absolute;
+        top: 0;
+        width: 50%;
+    }
+}
+/*
+switch button stuff
+*/
+.switch-button-label {
+    float: left;
+
+    font-size: 10pt;
+    cursor: pointer;
+}
+
+.switch-button-label.off {
+    color: #adadad;
+}
+
+.switch-button-label.on {
+    color: #0088CC;
+}
+
+.switch-button-background {
+    float: left;
+    position: relative;
+
+    background: #ccc;
+    border: 1px solid #aaa;
+
+    margin: 1px 10px;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    cursor: pointer;
+}
+
+.switch-button-button {
+    position: absolute;
+
+    left: -1px;
+    top : -1px;
+
+    background: #FAFAFA;
+    border: 1px solid #aaa;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+/*
+Chroma-specific stuff
+*/
+.env-header
+{
+    background: orangered;
+    color: white;
+}
+
+.module-title
+{
+    color: black;
+    font-size: 1.5em;
+}
+
+.rad-choice{
+    margin-left: 4px;
+}
+.hidden{
+    display:none;
+}
+.positiveVal{color:green;}
+.negativeVal{color:red;}
+.positive-row{color:green;}
+.negative-row{color:red;}
+.bold{font-weight: bold;}
+.row-spacer{height: 20px;}
+.illustration{width:99%;}
+.tbl-illustration{width:80%; margin-top:38px; margin-bottom:38px;}
+.tbl-illustration td, .tbl-illustration th{padding:4px;}
+.col-summary-labels {width: 45%;}
+.row-summary{background-color:black; color:white;}
+.seleted-badge{color:white; font-style: italic; text-transform: uppercase;}
+.selected-strategy{background-color:lightblue; padding:10px; border-radius:10px;}
+.jumbotron{
+    padding:14px !important;
+}
+.jumbotron p{
+    font-size:16px !important;
+}
+h2{
+    font-size:24px !important;
+}
+h3{
+    font-size:20px !important;
+}
+.reg-form-entry
+{
+    width: 100%;
+}
+#btn-reg-completeRegistration
+{
+    margin-top: 16px;
+}
+.btn
+{
+    margin-right: 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.glyphicon {
+    display:none;
+    right: 24px;
+    position: absolute;
+    top: 12px;
+    cursor:pointer;
+}
+.bank-backdrop{
+    background-color: lightsteelblue; 
+    border-radius: 6px;
+}
+.reg-forms{
+    padding: 14px !important;
+}
+#label-datepicker{
+    text-align: left;
+    margin-bottom: 14px;
+    text-transform: capitalize;
+}
+#ctnr-date-controls{
+    margin:14px;
+}
+#tabs-chart-metrics{
+    margin-left:14px;
+    margin-right:14px;
+    margin-bottom:14px;
+}
+#btn-grp-year{
+    display:table-cell !important;
+    vertical-align: text-bottom !important;
+}
+#btn-pick-year{
+    margin:0px !important;
+    width:100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+#ctnr-charts{
+    margin-left:14px;
+    margin-right:14px;
+}
+#mdd-panel-body{
+    position:relative;
+}
+.switch-wrapper{
+    float:right;
+    margin-right: -14px;
+}
+#btn-mdd-chroma, #btn-mdd-bench{
+    cursor:pointer;
+}
+.active-mdd-bench{
+    background-color: rgb(241,92,128);
+}
+.active-mdd-chroma{
+    background-color: rgb(247,163,92);
+}
